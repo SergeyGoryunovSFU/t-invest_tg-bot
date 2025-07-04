@@ -54,14 +54,17 @@ def send_messages(message):
                 elif instrument_type == "bond":
                     instrument_type = "облигация"
                 elif instrument_type == "currency":
-                    instrument_type = "облигация"
+                    instrument_type = "валюта"
                 elif instrument_type == "etf":
                     instrument_type = "фонд"
                 elif instrument_type == "futures":
                     instrument_type = "фьючерс"
                 return f"НОВАЯ ОПЕРАЦИЯ:\nID: {operation.id}\nТип операции: {operation.type}\nТип инструмента: {instrument_type}\nFigi-идентификатор: {operation.figi}\nЦена(за 1 инструмент): {operation.price.units},{int(operation.price.nano / pow(10, 7))} {operation.price.currency}\nКол-во: {operation.quantity}\nСумма: {operation.payment.units},{int(n*operation.payment.nano / pow(10, 7))} {operation.payment.currency}\nДата: {operation.date}"
             if operation.operation_type.value == 19:
-                return f"КОМИССИЯ ПО ПРЕДЫДУЩЕЙ ОПЕРАЦИИ:\nID: {operation.id}\nСумма: {operation.payment.units},{int(-1*operation.payment.nano / pow(10, 7))} {operation.payment.currency}\nДата: {operation.date}" + portfolio_balance(id)
+                minus = ""
+                if operation.payment.units == 0:
+                    minus = "-"
+                return f"КОМИССИЯ ПО ПРЕДЫДУЩЕЙ ОПЕРАЦИИ:\nID: {operation.id}\nСумма: {minus}{operation.payment.units},{int(-1*operation.payment.nano / pow(10, 7))} {operation.payment.currency}\nДата: {operation.date}" + portfolio_balance(id)
             return "Операция не прошла"
 
         def portfolio_balance(id):
