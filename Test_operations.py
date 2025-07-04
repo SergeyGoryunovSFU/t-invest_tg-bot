@@ -30,6 +30,6 @@ with Client(TOKEN, target=INVEST_GRPC_API_SANDBOX) as client:
     #currency = client.instruments.currencies(instrument_status = InstrumentStatus(1)).instruments
     #etf = client.instruments.etfs(instrument_status = InstrumentStatus(1)).instruments
     #futures = client.instruments.futures(instrument_status = InstrumentStatus(1)).instruments
-    #assets = shares/bonds/currency/etf/furutes
+    #assets = shares/bonds/currency/etf/futures
     #for asset in assets:
     #    print(f"{asset}\n")
